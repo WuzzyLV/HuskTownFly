@@ -1,0 +1,12 @@
+#test
+
+flight-grace-period: 3
+
+
+messages:
+  no-permission: '&cYou do not have permission to use this command.'
+  flight-enabled: '&aFlight enabled.'
+  flight-disabled: '&cFlight disabled.'
+  flight-on-exit: '&cFlight disabled because you left town.'
+  flight-exit-warning: '&cFlight will be disabled in %time%.'
+  flight-on-enter: '&aFlight enabled because you joined town.'

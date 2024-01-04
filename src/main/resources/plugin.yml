@@ -1,0 +1,24 @@
+name: HuskTownsFly
+version: '${version}'
+main: me.wuzzyxy.husktownsfly.HuskTownsFly
+api-version: '1.16'
+depend:
+  - HuskTowns
+
+commands:
+    townfly:
+        description: 'Toggles fly mode for the player.'
+        usage: /<command>
+        permission: husktownsfly.fly
+        aliases:
+        - tfly
+    husktownsfly:
+        description: 'Reloads predefined messages'
+        usage: /<command>
+        permission: husktownsfly.reload
+        aliases:
+        - htfly
+
+
+libraries:
+  - 'com.h2database:h2:2.2.224'
