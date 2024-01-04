@@ -9,7 +9,7 @@ public class PluginConfig {
         FLIGHT_ENABLED_MESSAGE = plugin.getConfig().getString("messages.flight-enabled", "Flight enabled");
         FLIGHT_DISABLED_MESSAGE = plugin.getConfig().getString("messages.flight-disabled", "Flight disabled");
         FLIGHT_ON_EXIT_MESSAGE = plugin.getConfig().getString("messages.flight-on-exit", "Flight disabled because town left");
-        FLIGHT_ON_EXIT_WARN_MESSAGE = plugin.getConfig().getString("messages.flight-exit-warning:", "Flight will be disabled in %time%.");
+        FLIGHT_ON_EXIT_WARN_MESSAGE = plugin.getConfig().getString("messages.flight-exit-warning", "Flight will be disabled in %time%.");
         FLIGHT_ON_ENTER_MESSAGE = plugin.getConfig().getString("messages.flight-on-enter", "Flight enabled because town entered");
         FLIGHT_GRACE_PERIOD = plugin.getConfig().getInt("flight-grace-period", 5);
     }

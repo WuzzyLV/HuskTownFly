@@ -1,12 +1,10 @@
-#test
-
+#HuskTownFly plugin made by WuzzyLV
 flight-grace-period: 3
 
-
 messages:
-  no-permission: '&cYou do not have permission to use this command.'
-  flight-enabled: '&aFlight enabled.'
-  flight-disabled: '&cFlight disabled.'
-  flight-on-exit: '&cFlight disabled because you left town.'
-  flight-exit-warning: '&cFlight will be disabled in %time%.'
-  flight-on-enter: '&aFlight enabled because you joined town.'
+  no-permission: '&c&#ed1b24 ⚠ &#ed3e46You do not have permission to do this.'
+  flight-enabled: '&#639f5b ✔ Flight in claims enabled.'
+  flight-disabled: '&#88434f ✘ Flight in claims disabled.'
+  flight-on-exit: '&#ed1b24 ⚠ &#ed3e46Flight deactivated.'
+  flight-exit-warning: '&#c25940 Flight will be disabled in %time%.'
+  flight-on-enter: '&#639f5b ✔ Flight activated.'
