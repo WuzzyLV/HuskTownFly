@@ -4,11 +4,10 @@ import me.wuzzyxy.husktownsfly.commands.FlyCommand;
 import me.wuzzyxy.husktownsfly.commands.ReloadCommand;
 import me.wuzzyxy.husktownsfly.database.Database;
 import me.wuzzyxy.husktownsfly.database.H2Database;
-import me.wuzzyxy.husktownsfly.listeners.PlayerJoinLeaveListener;
-import me.wuzzyxy.husktownsfly.listeners.PlayerTeleportListener;
-import me.wuzzyxy.husktownsfly.listeners.TownEnterListener;
-import me.wuzzyxy.husktownsfly.listeners.TownExitListener;
+import me.wuzzyxy.husktownsfly.listeners.*;
+import net.william278.husktowns.api.BukkitHuskTownsAPI;
 import net.william278.husktowns.api.HuskTownsAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,13 +15,13 @@ import java.sql.SQLException;
 
 public final class HuskTownsFly extends JavaPlugin {
 
-    private HuskTownsAPI huskTownsAPI;
+    private BukkitHuskTownsAPI huskTownsAPI;
     private Database database;
     private FlightInTownSetting flightInTownSetting;
     private PluginConfig config;
     @Override
     public void onEnable() {
-        huskTownsAPI = HuskTownsAPI.getInstance();
+        huskTownsAPI = BukkitHuskTownsAPI.getInstance();
 
         config = new PluginConfig(this);
 
@@ -53,7 +52,7 @@ public final class HuskTownsFly extends JavaPlugin {
         database.close();
     }
     // GETTERS
-    public HuskTownsAPI getHuskTownsAPI() {
+    public BukkitHuskTownsAPI getHuskTownsAPI() {
         return huskTownsAPI;
     }
 
