@@ -1,6 +1,7 @@
 package me.wuzzyxy.husktownsfly.listeners;
 
 import me.wuzzyxy.husktownsfly.HuskTownsFly;
+import me.wuzzyxy.husktownsfly.utils.HuskHomesUtils;
 import me.wuzzyxy.husktownsfly.utils.MessageUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,13 +26,14 @@ public class PlayerTeleportListener implements Listener {
         if (player.hasPermission("husktownsfly.bypass")) return;
 
         Location location = event.getTo();
+        if (location == null) return;
 
         if (!plugin.getFlyerList().isFlyEnabled(player.getUniqueId())) {
            player.setAllowFlight(false);
            return;
         }
 
-        plugin.getHuskTownsAPI().getClaimAt(location).ifPresentOrElse(claim -> {
+        plugin.getHuskTownsAPI().getClaimAt(HuskHomesUtils.locationToPosition(location)).ifPresentOrElse(claim -> {
             Map<UUID, Integer> members = claim.town().getMembers();
             if (!members.containsKey(player.getUniqueId())) {
                 player.setAllowFlight(false);

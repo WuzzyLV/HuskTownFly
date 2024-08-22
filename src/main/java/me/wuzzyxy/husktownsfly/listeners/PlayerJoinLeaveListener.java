@@ -1,6 +1,7 @@
 package me.wuzzyxy.husktownsfly.listeners;
 
 import me.wuzzyxy.husktownsfly.HuskTownsFly;
+import me.wuzzyxy.husktownsfly.utils.HuskHomesUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,8 +24,7 @@ public class PlayerJoinLeaveListener implements Listener {
         Player player = event.getPlayer();
         if (player.hasPermission("husktownsfly.bypass")) return;
 
-        Location location = player.getLocation();
-        plugin.getHuskTownsAPI().getClaimAt(location).ifPresent(claim -> {
+        plugin.getHuskTownsAPI().getClaimAt(HuskHomesUtils.locationToPosition(player.getLocation())).ifPresent(claim -> {
             Map<UUID, Integer> members = claim.town().getMembers();
             if (members.containsKey(player.getUniqueId())) {
                 player.setAllowFlight(true);

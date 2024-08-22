@@ -1,6 +1,7 @@
 package me.wuzzyxy.husktownsfly.flydelay;
 
 import me.wuzzyxy.husktownsfly.HuskTownsFly;
+import me.wuzzyxy.husktownsfly.utils.HuskHomesUtils;
 import me.wuzzyxy.husktownsfly.utils.MessageUtils;
 import net.william278.husktowns.claim.TownClaim;
 import org.bukkit.entity.Player;
@@ -48,7 +49,7 @@ public class FlyExitDelay extends BukkitRunnable {
     }
 
     private boolean isInOwnTown(Player player) {
-        TownClaim claim= plugin.getHuskTownsAPI().getClaimAt(player.getLocation()).orElse(null);
+        TownClaim claim= plugin.getHuskTownsAPI().getClaimAt(HuskHomesUtils.locationToPosition(player.getLocation())).orElse(null);
         if (claim == null) return false;
         return claim.town().getMembers().containsKey(player.getUniqueId());
     }

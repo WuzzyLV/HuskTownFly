@@ -3,7 +3,11 @@ package me.wuzzyxy.husktownsfly.commands;
 import me.wuzzyxy.husktownsfly.FlightInTownSetting;
 import me.wuzzyxy.husktownsfly.HuskTownsFly;
 import me.wuzzyxy.husktownsfly.PluginConfig;
+import me.wuzzyxy.husktownsfly.utils.HuskHomesUtils;
 import me.wuzzyxy.husktownsfly.utils.MessageUtils;
+import net.william278.husktowns.claim.Position;
+import net.william278.husktowns.claim.World;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -40,8 +44,8 @@ public class FlyCommand implements CommandExecutor {
             MessageUtils.sendMessage(player, config.FLIGHT_DISABLED_MESSAGE);
             return true;
         }
-        
-        plugin.getHuskTownsAPI().getClaimAt(player.getLocation()).ifPresent(claim -> {
+
+        plugin.getHuskTownsAPI().getClaimAt(HuskHomesUtils.locationToPosition(player.getLocation())).ifPresent(claim -> {
             if (claim.town().getMembers().containsKey(player.getUniqueId())) {
                 MessageUtils.sendMessage(player, config.FLIGHT_ON_ENTER_MESSAGE);
                 player.setAllowFlight(true);
