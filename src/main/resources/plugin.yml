@@ -1,7 +1,7 @@
 name: HuskTownsFly
 version: '${version}'
 main: me.wuzzyxy.husktownsfly.HuskTownsFly
-api-version: '1.16'
+api-version: '1.21'
 depend:
   - HuskTowns
 
