@@ -24,6 +24,11 @@ public class PlayerJoinLeaveListener implements Listener {
         Player player = event.getPlayer();
         if (player.hasPermission("husktownsfly.bypass")) return;
 
+        if (!plugin.getFlyerList().isFlyEnabled(player.getUniqueId())) {
+            player.setAllowFlight(false);
+            return;
+        }
+
         plugin.getHuskTownsAPI().getClaimAt(HuskHomesUtils.locationToPosition(player.getLocation())).ifPresent(claim -> {
             Map<UUID, Integer> members = claim.town().getMembers();
             if (members.containsKey(player.getUniqueId())) {
