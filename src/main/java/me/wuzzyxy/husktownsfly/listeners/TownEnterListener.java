@@ -3,6 +3,7 @@ package me.wuzzyxy.husktownsfly.listeners;
 import me.wuzzyxy.husktownsfly.FlightInTownSetting;
 import me.wuzzyxy.husktownsfly.HuskTownsFly;
 import me.wuzzyxy.husktownsfly.flydelay.FlyExitDelay;
+import me.wuzzyxy.husktownsfly.flydelay.FlyExitManager;
 import me.wuzzyxy.husktownsfly.utils.MessageUtils;
 import net.william278.husktowns.events.PlayerEnterTownEvent;
 import org.bukkit.entity.Player;
@@ -12,9 +13,11 @@ import org.bukkit.event.Listener;
 public class TownEnterListener implements Listener {
     HuskTownsFly plugin;
     FlightInTownSetting flightInTownSetting;
+    FlyExitManager flyExitManager;
 
     public TownEnterListener(HuskTownsFly plugin) {
         this.plugin = plugin;
+        this.flyExitManager = plugin.getFlyExitManager();
         this.flightInTownSetting = plugin.getFlyerList();
     }
 
@@ -29,7 +32,7 @@ public class TownEnterListener implements Listener {
                 MessageUtils.sendMessage(player, plugin.getPluginConfig().FLIGHT_ON_ENTER_MESSAGE);
                 player.setAllowFlight(true);
             }else {
-                new FlyExitDelay(plugin, player).runTaskTimer(plugin, 0, 20);
+                flyExitManager.addExitDelay(player);
             }
         }
     }

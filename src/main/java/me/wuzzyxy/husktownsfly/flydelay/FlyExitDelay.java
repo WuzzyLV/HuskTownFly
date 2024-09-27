@@ -10,11 +10,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class FlyExitDelay extends BukkitRunnable {
 
     HuskTownsFly plugin;
+    FlyExitManager flyExitManager;
     Player player;
     final int time;
     int passed;
     public FlyExitDelay(HuskTownsFly plugin, Player player) {
         this.plugin = plugin;
+        this.flyExitManager = plugin.getFlyExitManager();
         time = plugin.getPluginConfig().FLIGHT_GRACE_PERIOD;
         this.player = player;
         passed = 0;
@@ -28,6 +30,7 @@ public class FlyExitDelay extends BukkitRunnable {
                 player.setAllowFlight(false);
                 MessageUtils.sendMessage(player, plugin.getPluginConfig().FLIGHT_ON_EXIT_MESSAGE);
             }
+            flyExitManager.removeExitDelay(player);
             cancel();
             return;
         }
@@ -39,10 +42,12 @@ public class FlyExitDelay extends BukkitRunnable {
                                 .replace("%time%", String.valueOf(time - passed))
                 );
             }else { //if goes back into town
+                flyExitManager.removeExitDelay(player);
                 cancel();
             }
         } else {
             player.setAllowFlight(false);
+            flyExitManager.removeExitDelay(player);
             cancel();
         }
         passed++;

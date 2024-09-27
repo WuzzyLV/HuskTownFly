@@ -4,6 +4,7 @@ import me.wuzzyxy.husktownsfly.commands.FlyCommand;
 import me.wuzzyxy.husktownsfly.commands.ReloadCommand;
 import me.wuzzyxy.husktownsfly.database.Database;
 import me.wuzzyxy.husktownsfly.database.H2Database;
+import me.wuzzyxy.husktownsfly.flydelay.FlyExitManager;
 import me.wuzzyxy.husktownsfly.listeners.*;
 import net.william278.husktowns.api.BukkitHuskTownsAPI;
 import net.william278.husktowns.api.HuskTownsAPI;
@@ -18,6 +19,7 @@ public final class HuskTownsFly extends JavaPlugin {
     private BukkitHuskTownsAPI huskTownsAPI;
     private Database database;
     private FlightInTownSetting flightInTownSetting;
+    private FlyExitManager flyExitManager;
     private PluginConfig config;
     @Override
     public void onEnable() {
@@ -25,6 +27,7 @@ public final class HuskTownsFly extends JavaPlugin {
 
         config = new PluginConfig(this);
 
+        flyExitManager = new FlyExitManager(this);
         try {
             database = new H2Database(this);
         } catch (SQLException e) {
@@ -44,6 +47,9 @@ public final class HuskTownsFly extends JavaPlugin {
         //register commands
         getCommand("townfly").setExecutor(new FlyCommand(this));
         getCommand("husktownsfly").setExecutor(new ReloadCommand(this));
+
+        // Start the fly checker task
+        new FlyCheckerTask(this).runTaskTimer(this, 0, 20);
 
     }
 
@@ -68,5 +74,7 @@ public final class HuskTownsFly extends JavaPlugin {
         return config;
     }
 
-
+    public FlyExitManager getFlyExitManager() {
+        return flyExitManager;
+    }
 }

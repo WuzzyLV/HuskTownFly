@@ -30,6 +30,10 @@ public class FlightInTownSetting {
         return flying;
     }
 
+    public HashMap<UUID, Boolean> getFlyers() {
+        return flyers;
+    }
+
 
 
 
